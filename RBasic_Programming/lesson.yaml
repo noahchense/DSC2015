@@ -1,0 +1,263 @@
+- Class: meta
+  Course: DSC2015 
+  Lesson: RBasic Programming
+  Author: Nick Carchedi / translation by Noah
+  Type: Coursera
+  Organization: JHU Biostat
+  Version: 2.3.1
+
+- Class: text
+  Output: 這個課程中，我們會說明一些R的基礎結構，
+
+- Class: text
+  Output: 首先，讓我們先花點時間知道R是什麼東西。 基本上，Google就可以查到很完整資料了，不然wiki說明也很
+    詳細，我也是抄wiki的。
+
+- Class: text
+  Output: 請在瀏覽器google關鍵字：「R 語言」，而WIKI中對於R語言的說明： 
+    https://zh.wikipedia.org/zh-tw/R%E8%AF%AD%E8%A8%80
+
+- Class: text
+  Output: R語言，一種自由軟體程式語言與操作環境，主要用於統計分析、繪圖、資料探勘。R本來是由來自紐西蘭
+    奧克蘭大學的Ross Ihaka和Robert Gentleman開發（也因此稱為R），現在由「R開發核心團隊」負責開發。R是基
+    於S語言的一個GNU計劃專案，所以也可以當作S語言的一種實作，通常用S語言編寫的代碼都可以不作修改的在R環境下
+    執行。R的語法是來自Scheme。
+
+- Class: text
+  Output: R的原始碼可自由下載使用，亦有已編譯的執行檔版本可以下載，可在多種平台下執行，包括UNIX（也包括
+    FreeBSD和Linux）、Windows和MacOS。R主要是以命令列操作，同時有人開發了幾種圖形用戶介面。
+
+- Class: text
+  Output: "R的特色：R內建多種統計學及數字分析功能。R的功能也可以透過安裝套件（Packages，用戶撰寫的功能）
+  增強。因為S的血緣，R比其他統計學或數學專用的編程語言有更強的物件導向（物件導向程式設計）功能。"
+
+- Class: text
+  Output: "R的另一強項是繪圖功能，製圖具有印刷的素質，也可加入數學符號。雖然R主要用於統計分析或者開發統計
+  相關的軟體，但也有人用作矩陣計算。其分析速度可媲美專用於矩陣計算的自由軟體GNU Octave和商業軟體MATLAB。"
+
+- Class: text
+  Output: R的套件：R的功能能夠透過由用戶撰寫的套件增強。增加的功能有特殊的統計技術、繪圖功能，以及編程介
+    面和資料輸出／輸入功能。這些軟體包是由R語言、LaTeX、Java及最常用C語言和Fortran撰寫。下載的執行檔版
+    本會連同一批核心功能的軟體包，而根據CRAN紀錄有過千種不同的軟體包。其中有幾款較為常用，例如用於經濟計
+    量、財經分析、人文科學研究以及人工智慧。
+
+- Class: text
+  Output: 既然在講解R的歷史，那就一定要說CRAN。CRAN為Comprehensive R Archive Network（R綜合典藏網）
+    的簡稱。它除了收藏了R的執行檔下載版、原始碼和說明檔案，也收錄了各種用戶撰寫的軟體包。現時，全球有超過
+    一百個CRAN鏡像站 http://cran.stat.ucla.edu/。
+    
+    台灣有兩個的鏡像站分別放在台大資工( http://cran.csie.ntu.edu.tw/ )和
+    元智資工( http://ftp.yzu.edu.tw/CRAN/ )： 
+
+- Class: text
+  Output: 如果需要更多的訊息，可以在R的介面中，在提示符號">"後輸入：help.start()，常用的R的使用者介面
+    有R預設的R Console或R Studio（R Studio是一種圖形化的使用者介面，對於初學者很友善）。
+
+- Class: cmd_question
+  Output: 現在，我們來試著在輸入一點東西，在R提示符號 ">"：之後輸入5+7，並且按下Enter鍵。
+  CorrectAnswer: 5 + 7
+  AnswerTests: omnitest(correctExpr='5 + 7')
+  Hint: 喔喔，再試一次！在R提示符號 ">"：之後輸入5+7，並且按下Enter鍵。
+
+- Class: text
+  Output: 在R的介面中，你會看到螢幕會回應 "[1] 12" 。R是一種程式語言，通常我們學程式語言的時候，會想要
+    電腦幫我們自動完成一些不必要的輸入。
+
+- Class: text
+  Output: 這個案例中，我們通常會想要把運算的結果再次利用，就不用重新輸入如 "5 + 7" 這個運算，所以我
+    們會建立一個新的變數將結果儲存起來。
+
+- Class: text
+  Output: 在R這個語言中，我們習慣使用 "<-" 來表示運算的結果指定到某一個變數內，"<-" 這個符號由 "<" 
+    （小於符號），和 "-" (減號）所組成。
+
+- Class: text
+  Output: 你可以把他想像成一個箭頭，你將右邊的運算所逞生的結果，指定存到左邊的變數符號內。the arrow.
+
+- Class: cmd_question
+  Output: 現在，我們試著將 "5 + 7" 的結果存到變數 "x" 內。請在下面R提示符號後輸入： 
+  CorrectAnswer: x <- 5 + 7
+  AnswerTests: any_of_exprs('x <- 5 + 7', 'x <- 7 + 5')
+  Hint: 請輸入： "x <- 5 + 7"，請注意，你可以在變數與運算中加入空白來方便閱讀，也可以不要加任何空白，
+    像是 "x<-5+7" 或是 "x <- 5+7" ，但請注意，不要在指定的符號 "<-" 中間加入任何的空白。
+
+- Class: text
+  Output: 有注意到嗎？R的介面中沒有出現 "12" 這個結果。當我們將運算結果指定到某個變數時，R會認為你應該不用
+    立刻看到結果，但等一下你還是可以看到這個結果。
+
+- Class: cmd_question
+  Output: 想看到剛剛輸入的結果嗎？請在R的提示符號後輸入 "x" ，然後按下Enter，試試看～
+  CorrectAnswer: x
+  AnswerTests: omnitest(correctExpr='x')
+  Hint: 請輸入 "x" ，然後你會看到x的內容
+
+- Class: cmd_question
+  Output: 現在，我們試試看把之前 "x" 的結果再加點變化，試著輸入 "x - 3" ，並將結果指定到變數 "y" 內
+  CorrectAnswer: y <- x - 3
+  AnswerTests: omnitest(correctExpr='y <- x - 3')
+  Hint: 請輸入 "y <- x - 3" 然後按下Enter鍵，輸入 "x - 3" 或 "x-3" 都可以，但在變數"x"、運算元"-"
+    、數字"3" 之間輸入一個空白，可以比較清楚閱讀。
+
+- Class: cmd_question
+  Output: 你覺得 y 的結果是什麼呢？試著輸入 "y" 看看。
+  CorrectAnswer: 'y'
+  AnswerTests: omnitest(correctExpr='y')
+  Hint: 請輸入 "y"，然後按下 Enter按鍵。
+
+- Class: text
+  Output: 現在，讓我們建立一個小的集合，叫做「向量」，通常，我們把一個包含資料的物件叫做資料結構，
+    而在R中，數值向量（就是用數字所組成的向量）是最簡單的一種資料結構，而事實上，在R中其實一個數字所
+    代表的是長度為一的向量。
+
+- Class: cmd_question
+  Output: 在R中，要建立一個向量最簡單的方法就是用 "c()" 的函數，他的意思是concatenate（像鎖鏈般鏈結）
+    或combine（結合）的意思。我們現在試著建立一個向量，裡面包含三個數字："1.1", "9", "3.14"，請輸入 
+    "c(1.1, 9, 3.14)"，然後將結果存到一個變數 "z" 中。
+  CorrectAnswer: z <- c(1.1, 9, 3.14)
+  AnswerTests: omnitest(correctExpr='z <- c(1.1, 9, 3.14)')
+  Hint: 輸入 "z <- c(1.1, 9, 3.14)" 將會把向量（1.1, 9, 3.14）指定到新的變數 "z"中，其中，括號內
+    的空白不是必要的，但增加空白可以在閱讀上比較容易。
+
+- Class: cmd_question
+  Output: 在任何時候，一定有機會碰到不知道怎麼使用函數的機會，這時候只要在函數前輸入 "?" 問號這個符號，
+    像是我們想知道 "c()" 這個函數的功能，只要在R的提示符號後輸入： "?c" ，R就會顯示 c()這個函數的詳細
+    功能，注意，使用這個詢問的功能，函數後面不用加括號。
+  CorrectAnswer: ?c
+  AnswerTests: omnitest(correctExpr='?c')
+  Hint: 試著輸入 "?c" 再按下Enter，R會自動把c()的功能說明文件叫出來。
+
+- Class: cmd_question
+  Output: 輸入 "z" 來顯示z所包含的內容，注意，這時候顯示的結果中，並沒有逗號來分隔各個數字，
+  CorrectAnswer: z
+  AnswerTests: omnitest(correctExpr='z')
+  Hint: 請輸入 "z" 並按下Enter來看z所包含的內容。
+
+- Class: cmd_question
+  Output: 你可以結合很多的向量來產生新的向量。我們來練習一下，試著建立一個包含下面三筆資料的向量：
+    "z, 555, z" ，先不要將這個向量指定到新的變數內，這樣我們才能立刻的看到結果。
+  CorrectAnswer: c(z, 555, z)
+  AnswerTests: omnitest(correctExpr='c(z, 555, z)')
+  Hint: 請輸入 "c(z, 555, z)" ，先別指定到新的變數，我們想先看到結果。
+
+- Class: cmd_question
+  Output: 數值向量可以是一種數值表示式，試著輸入： "z * 2 + 100"，並看看有什麼變化
+  CorrectAnswer: z * 2 + 100
+  AnswerTests: omnitest(correctExpr='z * 2 + 100')
+  Hint: 請輸入："z * 2 + 100"，先不要存到新的變數內， 乘號"*"是按下鍵盤上shift和數字8得到的。
+
+- Class: text
+  Output: 觀察一下結果可以看到不太一樣的地方，會把每一個z中三個元件都乘以2，然後再對每一個元件加上100。
+
+- Class: text
+  Output: 我們也可以使用其他常見的運算子如："+"，"-"，"/"，和"^"（^這個是平方的符號，x^2代表x的平
+    方），如果我們想開根號的話，可以使用 "sqrt()" 這個函數，想得到絕對值的話，可以用 "abs()"。
+
+- Class: cmd_question
+  Output: 現在，我們試著算一下"z - 1"的平方根值，然後把結果存到 "my_sqrt"的變數內。
+  CorrectAnswer: my_sqrt <- sqrt(z - 1)
+  AnswerTests: omnitest(correctExpr='my_sqrt <- sqrt(z - 1)')
+  Hint: 把 "sqrt(z - 1)" 的結果存到 "my_sqrt"內。
+
+- Class: mult_question
+  Output: 在我們查看 my_sqrt的結果之前， 我們先想一下 my_sqrt裡面會包含什麼資料？
+  CorrectAnswer: 長度為3的向量。
+  AnswerChoices: 長度為3的向量。; 只有一個數字（就像只有長度為1的向量）;
+    長度為0的向量（就像空的向量）
+  AnswerTests: omnitest(correctVal='長度為3的向量。')
+  Hint: 想一想前面有稍微提到的關鍵字：向量，運算，一個元件一個元件的做
+
+- Class: cmd_question
+  Output: 好吧，請輸入 "my_sqrt" 來看一下結果吧。
+  CorrectAnswer: my_sqrt
+  AnswerTests: omnitest(correctExpr='my_sqrt')
+  Hint: 別玩了，輸入 "my_sqrt" 來看結果啦
+
+- Class: text
+  Output: 就像你之前想的（猜到？）一樣，在R中，會先把z的三個數值都先減1，然後再把每個數字取根號，
+    然後再把結果存到 "my_sqrt" 內，而且 my_sqrt 也會和 z 一樣有三個元件
+
+- Class: cmd_question
+  Output: 現在，我們試一下新的玩法，試著求 "z 除以 my_sqrt" 的結果，並存到 "my_div" 中。
+  CorrectAnswer: my_div <- z / my_sqrt
+  AnswerTests: omnitest(correctExpr='my_div <- z / my_sqrt')
+  Hint: 有點難嗎？應該不會吧，請輸入 "my_div <- z / my_sqrt" ，就跟前面說過一樣，除號"/"中
+    兩邊的空白不是必要的，但增加空白可以讓句子比較好閱讀，也可以增加效率。
+
+- Class: mult_question
+  Output: 問題來了，你覺得下面哪一個說法正確？相信一定難不倒你。
+  CorrectAnswer: my_div 的第一個數值會和 z除以mysqrt的第一個數值結果一樣，後面也是。
+  AnswerChoices: my_div 的第一個數值會和 z除以mysqrt的第一個數值結果一樣，後面也是。; 
+    my_div 裡面只有一個數字（就像長度為1的向量）; my_div 會變成沒有定義
+  AnswerTests: omnitest(correctVal='"my_div" 的第一個數值會和 z除以mysqrt的第一個數值
+    結果一樣，後面也是。')
+  Hint: 想一想，R是如何管理 "向量"，和"運算子"，像是"+"和"*"
+
+- Class: cmd_question
+  Output: 好啦，不用管他啦，直接輸入 "my_div" 來看結果吧。
+  CorrectAnswer: my_div
+  AnswerTests: omnitest(correctExpr='my_div')
+  Hint: 打字很累啊，別在玩了，就輸入 "my_div" 吧。 
+
+- Class: text
+  Output: 當碰到兩個一樣長度的向量時，R會直接一個一個處理每一個數值運算，像是"+"，"-"，"*"等，
+    但是一旦碰到兩個長度不一樣的向量的時候，R會自動填補長度比較小的向量，直到和另一個向量長度一樣
+    再運算。
+
+- Class: text
+  Output: 記得我們之前執行的命令： "z * 2 +100" 嗎？ z的長度為3的向量，而2和100這兩個都是
+    長度為1的向量。
+
+- Class: text
+  Output: 密技：R有一個「recycling」的機制。會自動把2變成長度為n個2的向量，100也是一樣，簡單
+    來說，就是當R在計算 "z * 2 +100"的時候，因為z是長度為3的向量，整個運算會變成：
+    "z * c(2, 2, 2) + c(100, 100, 100)" 的樣子。
+
+- Class: cmd_question
+  Output: 想看一下「recycling」其他例子嗎？試著把下面兩個向量加加看：c(1, 2, 3, 4)和 
+    c(0, 10)，別擔心要不要存在新的變數了，都可以啦。
+  CorrectAnswer: c(1, 2, 3, 4) + c(0, 10)
+  AnswerTests: omnitest(correctExpr='c(1, 2, 3, 4) + c(0, 10)')
+  Hint: 有困難嗎？是小蛋糕吧！請輸入 "c(1, 2, 3, 4) + c(0, 10)"後按Enter，就可以看到在R中如何
+    方便的自動將兩個不同長度的向量相加。記得，如果要直接看結果的話，就不要把結果指定變數內。
+
+- Class: text
+  Output: 如果在進行除法運算時，長度不一樣的向量運算R一樣會使用「recycling」的機制，但R console會
+    出現警告，表示本次的運算有可疑或可能發生錯誤的機會。
+
+- Class: cmd_question
+  Output: 試著輸入 "c(1, 2, 3, 4) + c(0, 10, 100)"。
+  CorrectAnswer: c(1, 2, 3, 4) + c(0, 10, 100)
+  AnswerTests: omnitest(correctExpr='c(1, 2, 3, 4) + c(0, 10, 100)')
+  Hint: "快結束了，別亂按啦，輸入c(1, 2, 3, 4) + c(0, 10, 100)，此時一樣會有運算，但R會顯示一個
+    警告訊息：In c(1, 2, 3, 4) + c(0, 10, 100) : 較長的物件長度並非較短物件長度的倍數。這時候一樣
+    可以把運算結果指定到變數內。 "
+
+- Class: text
+  Output: 在總結之前，這邊告訴你一些節省時間的方法：
+
+- Class: text
+  Output: 還記得之前我們曾經執行過："z * 2 + 100" 這個運算嗎？這次，我想把100這個數值改成1000。
+    你可以選擇重新輸入 "z * 2 + 1000"，或是....
+
+- Class: cmd_question
+  Output: 在很多的程式語言環境中，鍵盤右下角方向鍵區域的方向鍵上的按鍵可以循環的顯示你之前輸入的命令或
+    運算，試著按方向鍵的上箭頭找到之前的命令："z * 2 + 100"，然後按方向鍵左，將100改成1000，再輸入
+    Enter按鍵。
+  CorrectAnswer: z * 2 + 1000
+  AnswerTests: omnitest(correctExpr='z * 2 + 1000')
+  Hint: 如果你寫R程式的環境不支援方向鍵上的話，那就直接輸入 "z * 2 + 1000"。
+
+- Class: text
+  Output: 最後，我先假裝你已經知道怎麼瀏覽先前建立的資料的內容，但有時候，變數的名稱可能太相近，像是之前
+    的 my_div, myDiv 或 MyDIV，當然，你可以慢慢的一個變數一個變數嘗試，或是......
+
+- Class: cmd_question
+  Output: 你可以輸入前面記得起來的兩個字母，像是： "my"，然後按下鍵盤按鍵的「Tab」按鍵，大多的程式語言
+    編輯器都有支援自動列出之前所建立的相關變數名稱的功能，像是我們之前建立兩個變數："my_sqrt" 和 "my_div"
+    此時當輸入 "my" 再按下[TAB]按鍵後，螢幕會出現 my_sqrt和my_div兩個名稱，就可以跟著輸入"my_div"。
+    這個功能就叫做「自動完成」，很神奇吧。
+  CorrectAnswer: my_div
+  AnswerTests: omnitest(correctExpr='my_div')
+  Hint: 如果你的程式語言編輯器不支援自動完成的話，那就直接輸入 "my_div" ，並且換一個編輯器吧。by Noah
+  
+
